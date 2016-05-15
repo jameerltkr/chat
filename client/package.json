@@ -1,0 +1,23 @@
+{
+  "name": "ionic-tabs-plus-sidemenu",
+  "version": "1.0.0",
+  "description": "ionic-tabs-plus-sidemenu: An Ionic project",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify-css": "*",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.1"
+  },
+  "devDependencies": {
+    "bower": "*",
+    "gulp-util": "*",
+    "shelljs": "*"
+  },
+  "cordovaPlugins": [
+    "com.ionic.keyboard"
+  ],
+  "cordovaPlatforms": [
+    "ios"
+  ]
+}

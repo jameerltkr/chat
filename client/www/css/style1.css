@@ -1,0 +1,21 @@
+/* Empty. Add your own CSS if you like */
+
+.sidemenu {
+    background: #444;
+}
+
+.sidemenu .item,
+.sidemenu .item-content {
+    background: transparent;
+    color: white;
+}
+
+.sidemenu .item-content.activated {
+    background: white;
+    color: #444;
+}
+
+.gallery {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
