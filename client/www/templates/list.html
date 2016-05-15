@@ -1,0 +1,18 @@
+<ion-view>
+    <ion-content class="animated fadeIn padding">
+        <ion-list>
+            <div class="row gallery">
+                <div class="col col-25 grid" ng-repeat="item in items track by $index">
+                    <div class="top">
+                        <i class="icon ion-ios-camera"></i>
+                        <i class="icon ion-ios-film"></i>
+                        <i class="icon ion-ios-videocam"></i>
+                    </div>
+                    <input type="hidden" value="{{item}}" ng-model="id" />
+                    <img src="img/profile.jpg" width="100%" ng-click="joinChat('{{item}}')" />
+                    <h6 class="bottom">{{item}} | <i class="icon ion-navigate"></i> x m</h6>
+                </div>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>
