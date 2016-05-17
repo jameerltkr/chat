@@ -1,5 +1,5 @@
-myApp.controller('listController', ['$scope', '$http',
-    function($scope, $http) {
+myApp.controller('listController', ['$scope', '$http', '$location',
+    function ($scope, $http, $location) {
         $scope.items_old = [{
             id: 0
         }, {
@@ -84,38 +84,63 @@ myApp.controller('listController', ['$scope', '$http',
             id: 40
         }];
 
+        socket.on('new entry', function () {
+            var all_users = $http.get('/get-online-users');
 
-        var all_users = $http.get('/all-users');
+            var ids = [];
 
-        var ids=[];
+            all_users.then(function (data) {
+                console.log(data);
 
-        all_users.then(function(data){
+                //ids.push(data.id);
+
+                $scope.items = data.data.users;
+            })
+        });
+
+        socket.on('user exit', function (id) {
+            var socketid = id;
+
+            var do_offile = $http.get('/remove-user', { params: { socketid: socketid } });
+            do_offile.then(function (dd) {
+                var all_users = $http.get('/get-online-users');
+
+                var ids = [];
+
+                all_users.then(function (data) {
+                    console.log(data);
+
+                    //ids.push(data.id);
+
+                    $scope.items = data.data.users;
+                })
+            });
+
+        });
+
+
+        var all_users = $http.get('/get-online-users');
+
+        var ids = [];
+
+        all_users.then(function (data) {
             console.log(data);
 
             //ids.push(data.id);
-            data.data = data.data.split(',');
-            $scope.items = '';
 
-            var uu = [];
-           data.data.forEach(function(obj){
-                console.log(obj)
-                var index = obj.indexOf(socket.id);
-                if (index > -1) {
-                   obj.split(',').splice(index, 1);
-               }
-               uu.push(obj);
-            });
-
-            $scope.items = uu;
+            $scope.items = data.data.users;
         })
 
-         $scope.joinChat = function(id){
-            //console.log('sss');
-
-            var check = id;
+        $scope.joinChat = function (userid) {
+            if (userid.indexOf(sessionStorage.userid) > -1) {
+                alert("You can't chat with yourself");
+                return;
+            } else {
+                $location.path('/app/inbox/' + userid);
+            }
         }
 
     }
 
-    
+
 ]);

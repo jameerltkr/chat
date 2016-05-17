@@ -5,7 +5,7 @@
 </ion-view> -->
 <ion-view>
     <ion-content class="animated fadeIn">
-
+         <div id="mainMessage"></div>
     </ion-content>
 
     <!-- <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
@@ -21,13 +21,13 @@
 
     <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
         <label class="item-input-wrapper">
-            <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+            <input type="text" placeholder="Type your message" id="message" ng-model="message" on-focus="inputUp()" on-blur="inputDown()" />
         </label>
         <div class="footer-btn-wrap">
-            <button class="button button-icon icon ion-paper-airplane footer-btn" type="submit" ng-disabled="!input.message || input.message === ''">
+            <button class="button button-icon icon ion-paper-airplane footer-btn" type="submit" ng-click="sendMessage()" ng-disabled="!message || message === ''">
             </button>
 
-            <button class="button button-icon icon ion-volume-high footer-btn" type="submit" ng-disabled="!input.message || input.message === ''">
+            <button class="button button-icon icon ion-volume-high footer-btn" type="submit" ng-disabled="!message || message === ''">
             </button>
         </div>
     </ion-footer-bar>

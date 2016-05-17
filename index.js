@@ -16,33 +16,24 @@ var config = require('./config/config.js');     //Calling configuration file
 
 //console.log('Clients are:: '+JSON.stringify(clients));
 
-var users = [];
 
 io.on('connection', function (socket) {
-    process.env.socketid = socket.id;
-
     process.env.userid = socket.id;
-
-    users.push(process.env.userid);
-
-    process.env.userlist= users;
 
     console.log('User id:: ' + process.env.userid);
 
     socket.on('disconnect', function () {
-        var array = users;
-        var index = array.indexOf(socket.id);
 
-        if (index > -1) {
-            array.splice(index, 1);
-       }
+        var id = socket.id;
+
+        io.emit('user exit', id);
         console.log('user disconnected');
     });
 });
 
 // Initializing database
 mongoose.connect(config.database, function (err) {
-    if(err)
+    if (err)
         console.log(err);
     else
         console.log('Connected to Database...');
@@ -55,17 +46,17 @@ app.use(express.static('client/www'));
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
-    
+
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    
+
     // Request headers you wish to allow
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    
+
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
-    
+
     // Pass to next layer of middleware
     next();
 });

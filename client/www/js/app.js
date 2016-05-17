@@ -25,7 +25,9 @@ myApp
     if(sessionStorage.length > 0){
         $rootScope.nickname = sessionStorage.nickname;
         $rootScope.authenticated = true;
-    }else{
+        $rootScope.userid = sessionStorage.userid;
+    } else {
+        $rootScope.userid = null;
         $rootScope.authenticated = false;
         $rootScope.nickname = '';
     }

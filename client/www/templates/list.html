@@ -8,9 +8,9 @@
                         <i class="icon ion-ios-film"></i>
                         <i class="icon ion-ios-videocam"></i>
                     </div>
-                    <input type="hidden" value="{{item}}" ng-model="id" />
-                    <img src="img/profile.jpg" width="100%" ng-click="joinChat('{{item}}')" />
-                    <h6 class="bottom">{{item}} | <i class="icon ion-navigate"></i> x m</h6>
+                    <input type="hidden" value="{{item.nickname}}" ng-model="id" />
+                    <img src="img/profile.jpg" width="100%" ng-click="joinChat('{{item._id}}')" />
+                    <h6 class="bottom">{{item.nickname}} | <i class="icon ion-navigate"></i> x m</h6>
                 </div>
             </div>
         </ion-list>

@@ -16,7 +16,8 @@ myApp.controller('startController', function ($scope, $http, $rootScope, $locati
             $rootScope.authenticated = true;
             sessionStorage.setItem('nickname', nickname);
             $rootScope.nickname = nickname;
-
+            $rootScope.userid = data.data.user._id;
+            sessionStorage.setItem('userid', data.data.user._id);
             $location.path('/app/list');
         }, function (err) {
             //$scope.pages = page.data.data[0].page_data;
